@@ -6,7 +6,6 @@ class MemFilt
 private:
 
 protected:
-    unsigned int m_length; // Length of the filter
     T m_taps[size];        // Previous inputs to use, first element is most recent sample
     T m_output;                // Current Output
     void shift(T val);         // Shift new value into tap array
@@ -24,8 +23,6 @@ public:
 template <typename T, int size>
 MemFilt<T, size>::MemFilt()
 {
-    // Update private members
-    this->m_length = size;
     // Initialize taps to 0
     for (size_t i = 0; i < size; i++)
     {

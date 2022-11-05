@@ -1,4 +1,4 @@
-FIR:
-	mkdir -p build/FIRfilt
-	g++   FIRfilt_test.cpp -o build/FIRfilt/fir.out 
-	./build/FIRfilt/fir.out
+all:
+	mkdir -p build
+	g++ FIRfilt_test.cpp -o build/fir.out 
+	./build/fir.out
