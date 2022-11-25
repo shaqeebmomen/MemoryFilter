@@ -23,11 +23,11 @@ template <typename T, int size>
 void MedianFilt<T, size>::update(T val)
 {
     MemFilt<T, size>::shift(val);
-    for (size_t i = 0; i < size; i++)
-    {
-        std::cout << this->m_taps[i] << " ";
-    }
-    std::cout << "sort-> ";
+    // for (size_t i = 0; i < size; i++)
+    // {
+    //     std::cout << this->m_taps[i] << " ";
+    // }
+    // std::cout << "sort-> ";
     this->calculate();
 }
 
@@ -39,18 +39,18 @@ T MedianFilt<T, size>::calculate()
     T sorted_arr[size];
     memcpy(sorted_arr, this->m_taps, sizeof(this->m_taps));
     this->sort(sorted_arr);
-    for (size_t i = 0; i < size; i++)
-    {
-        std::cout << sorted_arr[i] << " ";
-    }
+    // for (size_t i = 0; i < size; i++)
+    // {
+    //     std::cout << sorted_arr[i] << " ";
+    // }
 
     if (size % 2 == 0)
     {
-        this->m_output = (this->m_taps[size / 2] + this->m_taps[size / 2 + 1]) / 2;
+        this->m_output = (sorted_arr[size / 2] + sorted_arr[size / 2 + 1]) / 2;
     }
     else
     {
-        this->m_output = (this->m_taps[size / 2]);
+        this->m_output = (sorted_arr[size / 2]);
     }
     return this->m_output;
 }
