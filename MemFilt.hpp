@@ -4,9 +4,8 @@ template <typename T, int size>
 class MemFilt
 {
 private:
-
 protected:
-    T m_taps[size];        // Previous inputs to use, first element is most recent sample
+    T m_taps[size];            // Previous inputs to use, first element is most recent sample
     T m_output;                // Current Output
     void shift(T val);         // Shift new value into tap array
     virtual T calculate() = 0; // Perform the product sum operation
@@ -15,6 +14,7 @@ public:
     MemFilt();
     void update(T newval);
     T getOutput(); // Getter for output
+    virtual void reset();
 };
 
 /**
@@ -59,4 +59,14 @@ template <typename T, int size>
 T MemFilt<T, size>::getOutput()
 {
     return this->m_output;
+}
+
+template <typename T, int size>
+void MemFilt<T, size>::reset()
+{
+    this->m_output = 0;
+    for (size_t i = 0; i < size; i++)
+    {
+        this->m_taps[i] = 0;
+    }
 }
