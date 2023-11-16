@@ -60,7 +60,7 @@ template <typename T, int size>
 void MedianFilt<T, size>::sort(T *arr)
 {
     // Not using std::sort b/c of possible recursion/heap usage, trying to avoid that on an embedded chip, not that I know if it will actually cause a problem
-    // Insertion sort was chosen for simplicity, a better algorithm should be chosen in future
+    // Insertion sort was chosen for simplicity, a better algorithm should be chosen in future, or perhaps re-implement calculate() so the list is always partially sorted (also requires re-implementation of MemFilt::reset())
     for (int i = 1; i < size; i++)
     {
         T x = arr[i];
